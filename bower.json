@@ -1,0 +1,31 @@
+{
+  "name": "up-password-input",
+  "version": "0.5.0",
+  "authors": [
+    "Rik Bellens <rik.bellens@appsup.be>"
+  ],
+  "description": "A polymer input element with Material Design styling for entering and validating a password.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "password",
+    "paper"
+  ],
+  "main": "up-password-input.html",
+  "license": "LICENSE",
+  "homepage": "https://github.com/appsup-polymer/up-password-input",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "paper-input": "PolymerElements/paper-input#~1.0.11"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}

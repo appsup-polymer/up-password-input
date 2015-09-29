@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../up-password-input.html">
+  </head>
+  <body>
+
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <up-password-input id="password1" strength-calculator min-strength-category="good"></up-password-input>
+    <up-password-input id="password2" confirmation-for="password1"></up-password-input>
+
+    <script>
+      var el1 = document.querySelector('#password1');
+      var el2 = document.querySelector('#password2');
+
+      suite('<up-password-input>', function() {
+
+        test('strength calculation', function() {
+          el1.value = "test";
+          assert.equal(el1.$.strength.strengthCategory, 'bad');
+          assert.equal(el1.validate(), false);
+          el1.value = "test12";
+          assert.equal(el1.$.strength.strengthCategory, 'weak');
+          assert.equal(el1.validate(), false);
+          el1.value = "test123ab";
+          assert.equal(el1.$.strength.strengthCategory, 'good');
+          assert.equal(el1.validate(), true);
+          el1.value = "test123ab_X";
+          assert.equal(el1.$.strength.strengthCategory, 'strong');
+          assert.equal(el1.validate(), true);
+        });
+
+        test('confirmation', function() {
+          el2.value = "hello";
+          assert.equal(el2.validate(), false);
+          el2.value = "test123ab_X";
+          assert.equal(el2.validate(), true);
+          el1.value = "test12";
+          el2.value = "test12";
+          assert.equal(el2.validate(), false);
+
+        })
+      });
+    </script>
+
+  </body>
+</html>
